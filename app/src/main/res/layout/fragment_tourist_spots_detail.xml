@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        tools:context=".view.TouristSpotsDetailFragment">
+
+        <ImageView
+            android:id="@+id/iVDetailSpotPic"
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/default_detail_fragment_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tVDetailSpotName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="美山驛站"
+            android:textSize="35dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iVDetailSpotPic" />
+
+        <TextView
+            android:id="@+id/tVDetailOpenTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="開放時間：全天候開放"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tVDetailSpotName" />
+
+        <TextView
+            android:id="@+id/tVDetailPhoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="電話：xx-xxxxx"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tVDetailOpenTime" />
+
+        <TextView
+            android:id="@+id/tVDetailAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="地址："
+            android:textSize="19dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tVDetailPhoneNumber" />
+
+        <TextView
+            android:id="@+id/tVDetailTravelInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="交通資訊："
+            android:textSize="19dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tVDetailAddress" />
+
+        <TextView
+            android:id="@+id/tVDetailDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="景點介紹："
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tVDetailTravelInfo" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/weatherFloatingButton"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:clickable="true"
+            android:scaleType="center"
+            android:src="@drawable/ic_weather_for_floating_button"
+            app:fabCustomSize="80dp"
+            app:layout_constraintBottom_toTopOf="@+id/favoriteListButton"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/favoriteListButton"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginEnd="20dp"
+            android:clickable="true"
+            android:scaleType="center"
+            android:src="@drawable/ic_baseline_favorite_24"
+            android:text="我的最愛"
+            app:fabCustomSize="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/addToMyFavButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="加到想去清單！"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

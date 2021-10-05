@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/weatherSwiper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.DestinationWeatherFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tVCityName"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="台北市"
+                android:textSize="35dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tVWeatherTime1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:text="我是氣候的時間1"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tVWeatherWx1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:text="我是此時段天氣1"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/tVWeatherPoP1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:text="我是降雨機率1"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/tVWeatherMinTMaxT1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:text="我是最高溫和最低溫1"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/tVWeatherCI1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:text="我是天氣的體感1"
+                    android:textSize="18dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tVWeatherTime2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:text="我是氣候的時間2"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tVWeatherWx2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:text="我是此時段天氣2"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/tVWeatherPoP2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:text="我是降雨機率2"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/tVWeatherMinTMaxT2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:text="我是最高溫和最低溫2"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/tVWeatherCI2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:text="我是天氣的體感2"
+                    android:textSize="18dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tVWeatherTime3"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:text="我是氣候的時間3"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tVWeatherWx3"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:text="我是此時段天氣3"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/tVWeatherPoP3"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:text="我是降雨機率3"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/tVWeatherMinTMaxT3"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:text="我是最高溫和最低溫3"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/tVWeatherCI3"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:text="我是天氣的體感3"
+                    android:textSize="18dp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</layout>

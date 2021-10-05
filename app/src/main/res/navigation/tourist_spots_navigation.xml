@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/touristSpotsListFragment">
+
+    <fragment
+        android:id="@+id/touristSpotsListFragment"
+        android:name="com.example.taiwantouristspots.view.TouristSpotsListFragment"
+        android:label="TouristSpotsListFragment">
+        <action
+            android:id="@+id/actionListToDetailFragment"
+            app:destination="@id/touristSpotsDetailFragment">
+            <argument
+                android:name="spotAddress"
+                android:defaultValue=""
+                app:argType="string" />
+            <argument
+                android:name="spotDescription"
+                android:defaultValue=""
+                app:argType="string" />
+            <argument
+                android:name="spotId"
+                android:defaultValue=""
+                app:argType="string" />
+            <argument
+                android:name="spotKeyword"
+                android:defaultValue=""
+                app:argType="string" />
+            <argument
+                android:name="spotName"
+                android:defaultValue=""
+                app:argType="string" />
+            <argument
+                android:name="spotOpenTime"
+                android:defaultValue=""
+                app:argType="string" />
+            <argument
+                android:name="spotRegion"
+                android:defaultValue=""
+                app:argType="string" />
+            <argument
+                android:name="spotTel"
+                android:defaultValue=""
+                app:argType="string" />
+            <argument
+                android:name="spotTravellingInfo"
+                android:defaultValue=""
+                app:argType="string" />
+            <argument
+                android:name="spotPictureUrl"
+                android:defaultValue=""
+                app:argType="string" />
+        </action>
+        <action
+            android:id="@+id/actionListToFavoriteFragment"
+            app:destination="@id/favoriteSpotsListFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/touristSpotsDetailFragment"
+        android:name="com.example.taiwantouristspots.view.TouristSpotsDetailFragment"
+        android:label="TouristSpotsDetailFragment">
+        <argument
+            android:name="spotAddress"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="spotDescription"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="spotId"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="spotKeyword"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="spotName"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="spotOpenTime"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="spotRegion"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="spotTel"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="spotTravellingInfo"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="spotPictureUrl"
+            android:defaultValue=""
+            app:argType="string" />
+        <action
+            android:id="@+id/actionDetailToListFragment"
+            app:destination="@id/touristSpotsListFragment" />
+        <action
+            android:id="@+id/actionDetailToWeatherFragment"
+            app:destination="@id/destinationWeatherFragment">
+
+            <argument
+                android:name="spotLocation"
+                android:defaultValue=""
+                app:argType="string" />
+        </action>
+        <action
+            android:id="@+id/actionDetailToFavoriteFragment"
+            app:destination="@id/favoriteSpotsListFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/destinationWeatherFragment"
+        android:name="com.example.taiwantouristspots.view.DestinationWeatherFragment"
+        android:label="fragment_destination_weather"
+        tools:layout="@layout/fragment_destination_weather">
+        <argument
+            android:name="spotLocation"
+            android:defaultValue=""
+            app:argType="string" />
+        <action
+            android:id="@+id/actionWeatherToDetailFragment"
+            app:destination="@id/touristSpotsDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteSpotsListFragment"
+        android:name="com.example.taiwantouristspots.view.FavoriteSpotsListFragment"
+        android:label="FavoriteSpotsListFragment">
+        <action
+            android:id="@+id/actionFavoriteToDetailFragment"
+            app:destination="@id/touristSpotsDetailFragment">
+
+            <argument
+                android:name="spotAddress"
+                android:defaultValue=""
+                app:argType="string" />
+            <argument
+                android:name="spotDescription"
+                android:defaultValue=""
+                app:argType="string" />
+            <argument
+                android:name="spotId"
+                android:defaultValue=""
+                app:argType="string" />
+            <argument
+                android:name="spotKeyword"
+                android:defaultValue=""
+                app:argType="string" />
+            <argument
+                android:name="spotName"
+                android:defaultValue=""
+                app:argType="string" />
+            <argument
+                android:name="spotOpenTime"
+                android:defaultValue=""
+                app:argType="string" />
+            <argument
+                android:name="spotRegion"
+                android:defaultValue=""
+                app:argType="string" />
+            <argument
+                android:name="spotTel"
+                android:defaultValue=""
+                app:argType="string" />
+            <argument
+                android:name="spotTravellingInfo"
+                android:defaultValue=""
+                app:argType="string" />
+            <argument
+                android:name="spotPictureUrl"
+                android:defaultValue=""
+                app:argType="string" />
+        </action>
+    </fragment>
+</navigation>
