@@ -15,7 +15,8 @@ data class FavoriteInfo(
     val spotRegion: String?,
     val spotTel: String?,
     val spotTravellingInfo: String?,
-    val spotPictureUrl: String?
+    val spotPictureUrl: String?,
+    var spotNote: String?
 ) {
     @PrimaryKey(autoGenerate = true)
     var uuid: Int = 0

@@ -4,8 +4,8 @@ import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
+import androidx.core.widget.addTextChangedListener
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taiwantouristspots.R
@@ -32,7 +32,7 @@ class FavoriteSpotsListAdapter(val favList: ArrayList<FavoriteInfo>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteSpotsListViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.item_tourist_spot, parent, false)
+        val view = inflater.inflate(R.layout.favorite_item_tourist_spot, parent, false)
         return FavoriteSpotsListViewHolder(view)
     }
 
@@ -46,7 +46,7 @@ class FavoriteSpotsListAdapter(val favList: ArrayList<FavoriteInfo>) :
             favList[position].spotPictureUrl,
             getProgressDrawable(holder.view.context)
         )
-        holder.view.setOnClickListener {
+        holder.view.findViewById<LinearLayout>(R.id.linearLayout1).setOnClickListener {
             Navigation.findNavController(it).navigate(
                 FavoriteSpotsListFragmentDirections.actionFavoriteToDetailFragment(
                     favList[position].spotAddress ?: "",
@@ -63,7 +63,7 @@ class FavoriteSpotsListAdapter(val favList: ArrayList<FavoriteInfo>) :
             )
         }
 
-        holder.view.setOnLongClickListener {
+        holder.view.findViewById<LinearLayout>(R.id.linearLayout1).setOnLongClickListener {
             val addAlertDialog = AlertDialog.Builder(holder.view.context)
                 .setTitle("確定要刪除？")
                 .setMessage("您確定要刪除此景點？")
@@ -85,6 +85,19 @@ class FavoriteSpotsListAdapter(val favList: ArrayList<FavoriteInfo>) :
             addAlertDialog.show()
             true
         }
+
+        //筆記editText
+        holder.view.findViewById<EditText>(R.id.etNote).setText(favList[position].spotNote)
+        holder.view.findViewById<Button>(R.id.etButton).setOnClickListener {
+            val newNote = holder.view.findViewById<EditText>(R.id.etNote).text.toString()
+            favList[position].spotNote = newNote
+            notifyDataSetChanged()
+
+            CoroutineScope(IO).launch {
+                TouristSpotsDatabase(holder.view.context).favoriteSpotsListDao().insertAll(favList)
+            }
+        }
+
 
     }
 

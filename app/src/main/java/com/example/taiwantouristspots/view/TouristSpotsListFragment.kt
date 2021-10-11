@@ -135,7 +135,6 @@ class TouristSpotsListFragment : Fragment() {
                 val originalList: List<Info> = getDBList
                 val displayList: MutableList<Info> = getDBList.toMutableList()
 
-
                 if (menuItem != null) {
 
                     val searchView = menuItem.actionView as SearchView

@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.taiwantouristspots.spotsmodel.Info
 import com.example.taiwantouristspots.spotsmodel.FavoriteInfo
 
-@Database(entities = [Info::class, FavoriteInfo::class], version = 1)
+@Database(entities = [Info::class, FavoriteInfo::class], version = 2)
 abstract class TouristSpotsDatabase : RoomDatabase() {
 
     abstract fun spotsListDao(): SpotsListDao
@@ -28,7 +28,7 @@ abstract class TouristSpotsDatabase : RoomDatabase() {
             context.applicationContext,
             TouristSpotsDatabase::class.java,
             "touristSpotsAppDatabase"
-        ).build()
+        ).fallbackToDestructiveMigration().build()
 
     }
 

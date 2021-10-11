@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.14387031408308004" />
+        <entry key="app/src/main/res/layout/favorite_item_tourist_spot.xml" value="0.22954939876290154" />
         <entry key="app/src/main/res/layout/fragment_destination_weather.xml" value="0.35280797101449274" />
         <entry key="app/src/main/res/layout/fragment_favorite_spots_list.xml" value="0.24662598686753873" />
         <entry key="app/src/main/res/layout/fragment_tourist_spots_detail.xml" value="0.296242043174327" />

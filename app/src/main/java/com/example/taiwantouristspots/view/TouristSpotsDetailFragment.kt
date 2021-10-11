@@ -62,7 +62,8 @@ class TouristSpotsDetailFragment : Fragment() {
             args.spotRegion,
             args.spotTel,
             args.spotTravellingInfo,
-            args.spotPictureUrl
+            args.spotPictureUrl,
+            ""
         )
         //到達我的最愛Fragment按鈕
         val favoriteListButton = view.findViewById<FloatingActionButton>(R.id.favoriteListButton)
