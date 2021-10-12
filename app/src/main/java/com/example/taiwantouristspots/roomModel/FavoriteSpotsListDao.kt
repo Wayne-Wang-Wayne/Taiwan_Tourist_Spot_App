@@ -6,6 +6,8 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.taiwantouristspots.spotsmodel.FavoriteInfo
 
+
+//我的最愛清單Room Database的Dao
 @Dao
 interface FavoriteSpotsListDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)

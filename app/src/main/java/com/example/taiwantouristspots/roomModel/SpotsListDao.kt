@@ -5,6 +5,8 @@ import androidx.room.Insert
 import androidx.room.Query
 import com.example.taiwantouristspots.spotsmodel.Info
 
+
+//主頁所有景點資料Room Database的Dao
 @Dao
 interface SpotsListDao {
     @Insert

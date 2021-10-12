@@ -12,18 +12,18 @@ import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.example.taiwantouristspots.R
+import com.example.taiwantouristspots.retrofitmodel.RetrofitInstance
 import com.example.taiwantouristspots.viewmodel.TouristSpotsAppViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import org.w3c.dom.Text
 
-
+//此為即時查詢當地縣市近兩天天氣的Fragment
 class DestinationWeatherFragment : Fragment() {
 
-
+    //需要用到的傳遞到這個Fragment的資料以及View Model
     val args: DestinationWeatherFragmentArgs by navArgs()
-
     private val viewModel: TouristSpotsAppViewModel by activityViewModels()
 
 
@@ -38,15 +38,15 @@ class DestinationWeatherFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //在創建此Fragment時呼叫的update View Model資料的方法，並observe Live Data 的資料
         val location = args.spotLocation
-
         CoroutineScope(IO).launch {
             viewModel.refreshWeatherData(location)
         }
-
         observeViewModel(view)
     }
 
+    //此為自寫的observe View Model方法，Set UI介面
     private fun observeViewModel(view: View) {
 
         viewModel.cityName.observe(viewLifecycleOwner, Observer { cityName ->

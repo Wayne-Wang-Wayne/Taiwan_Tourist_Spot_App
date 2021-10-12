@@ -19,13 +19,14 @@ import kotlinx.coroutines.withContext
 
 class TouristSpotsAppViewModel(application: Application) : AndroidViewModel(application) {
 
+    //此為主頁面Fragment相關 Live Data及Function還有 sharePreferences 和 一些資料
     val touristSpotsList: LiveData<List<Info>> = MutableLiveData<List<Info>>()
     val listLoadError: LiveData<Boolean> = MutableLiveData<Boolean>()
     val listLoading: LiveData<Boolean> = MutableLiveData<Boolean>()
     private val prefHelper = SharedPreferencesHelper(getApplication())
     private var refreshTime = 60 * 24 * 60 * 1000 * 1000 * 1000L
 
-
+    //設定時間參數，只要一天內資料都會直接從DB來，超過一天就會從Api重新抓取
     suspend fun refreshListData() {
         val updateTime = prefHelper.getUpdateTime()
         if (updateTime != null && updateTime != 0L && System.nanoTime() - updateTime < refreshTime) {
@@ -39,7 +40,7 @@ class TouristSpotsAppViewModel(application: Application) : AndroidViewModel(appl
     suspend fun refreshBypassCache() {
         fetchFromRemote()
     }
-
+    //從DB抓取資料到View Model的方法
     suspend fun fetchFromDatabase() {
         CoroutineScope(IO).launch {
             val spotsList = TouristSpotsDatabase(getApplication()).spotsListDao().getAllSpotsList()
@@ -56,7 +57,7 @@ class TouristSpotsAppViewModel(application: Application) : AndroidViewModel(appl
             }
         }
     }
-
+    //從Api抓取資料到View Model的方法
     suspend fun fetchFromRemote() {
         CoroutineScope(IO).launch {
             val newList =
@@ -73,7 +74,7 @@ class TouristSpotsAppViewModel(application: Application) : AndroidViewModel(appl
         }
     }
 
-
+    //儲存資料到DB的方法，只要Call上面的Api抓取方法這個就會被Call到，同步更新DB資料
     suspend fun storeSpotsListLocally(list: List<Info>) {
         CoroutineScope(IO).launch {
             val spotsListDao = TouristSpotsDatabase(getApplication()).spotsListDao()
@@ -83,17 +84,17 @@ class TouristSpotsAppViewModel(application: Application) : AndroidViewModel(appl
                 list[i].uuid = spotsResult[i].toInt()
             }
         }
+        //只要存取資料到DB就會記錄時間，以利後續系統判斷何時要再從Api抓取新資料
         prefHelper.saveUpdateTime(System.nanoTime())
     }
 
-
+    //此為詳細景點Fragment的Live Data 及相關function
     val touristSpotDetail: LiveData<Info> = MutableLiveData<Info>()
-
     fun refreshDetailData(info: Info) {
         (touristSpotDetail as MutableLiveData<Info>).value = info
     }
 
-
+    //此為天氣Fragment的Live Data 及相關function
     val locationWeather: LiveData<Location> = MutableLiveData<Location>()
     val cityName: LiveData<String> = MutableLiveData<String>()
 
@@ -111,14 +112,15 @@ class TouristSpotsAppViewModel(application: Application) : AndroidViewModel(appl
                 }
                 (cityName as MutableLiveData<String>).value = location
             }
-
         }
-
     }
 
+
+    //此為我的最愛景點Fragment的Live Data 及相關function
     val favoriteSpotsList: LiveData<List<FavoriteInfo>> =
         MutableLiveData<List<FavoriteInfo>>()
 
+    //新增我的最愛景點資料到DB的function
     suspend fun addFavoriteSpotToDB(FavoriteInfo: FavoriteInfo) {
         CoroutineScope(IO).launch {
             val favSpotsList = TouristSpotsDatabase(getApplication()).favoriteSpotsListDao()
@@ -128,6 +130,7 @@ class TouristSpotsAppViewModel(application: Application) : AndroidViewModel(appl
         }
     }
 
+    // update 我的最愛 Live Data的Function
     suspend fun updateFavLiveData() {
         CoroutineScope(IO).launch {
             val favSpotsList = TouristSpotsDatabase(getApplication()).favoriteSpotsListDao()
@@ -138,8 +141,6 @@ class TouristSpotsAppViewModel(application: Application) : AndroidViewModel(appl
             }
         }
     }
-
-
 
 
 }

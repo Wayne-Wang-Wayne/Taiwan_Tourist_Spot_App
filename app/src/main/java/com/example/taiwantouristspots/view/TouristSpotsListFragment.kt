@@ -27,6 +27,7 @@ import kotlinx.coroutines.withContext
 
 class TouristSpotsListFragment : Fragment() {
 
+    //下面會用到的view model 和 Adapter
     private val viewModel: TouristSpotsAppViewModel by activityViewModels()
     private val touristSpotsListAdapter = TouristSpotsListAdapter(arrayListOf())
 
@@ -50,17 +51,18 @@ class TouristSpotsListFragment : Fragment() {
         val errorSign = view.findViewById<TextView>(R.id.listErrorSign)
         val loadingSign = view.findViewById<ProgressBar>(R.id.listLoadingSign)
 
-
+        //set RecyclerView
         val recyclerView = view.findViewById<RecyclerView>(R.id.touristSpotsListRecyclerView)
-
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = touristSpotsListAdapter
         }
+
+        //observe Live Data
         observeViewModel(view)
 
+        //下拉可以從Api重新抓取最新資料的邏輯
         val listSwiper = view.findViewById<SwipeRefreshLayout>(R.id.listSwiper)
-
         listSwiper.setOnRefreshListener {
             recyclerView.visibility = View.GONE
             errorSign.visibility = View.GONE
@@ -78,17 +80,20 @@ class TouristSpotsListFragment : Fragment() {
                 .navigate(TouristSpotsListFragmentDirections.actionListToFavoriteFragment())
         }
 
-        //隨機按鈕設置
-
+        //隨機挑一個按鈕的邏輯
         val randomButton = view.findViewById<Button>(R.id.randomButton)
         randomButton.setOnClickListener {
+
+            //從DB抓List資料出來
             CoroutineScope(IO).launch {
                 val getDBList =
                     TouristSpotsDatabase(requireActivity().getApplicationContext()).spotsListDao()
                         .getAllSpotsList() ?: listOf()
 
                 withContext(Main) {
+                    //隨機抓個數字
                     val randomNumber = (getDBList.indices).random()
+                    //帶著隨機資料到Detail Fragment去做顯示
                     Navigation.findNavController(it).navigate(
                         TouristSpotsListFragmentDirections.actionListToDetailFragment(
                             getDBList[randomNumber].spotAddress ?: "",
@@ -110,27 +115,24 @@ class TouristSpotsListFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        //刷新view model Live Data資料的方法
         CoroutineScope(IO).launch {
             viewModel.refreshListData()
         }
     }
 
+    //此為主頁搜尋功能的邏輯
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
-
         val menuItem = menu!!.findItem(R.id.search)
-
-
 
         CoroutineScope(IO).launch {
             val getDBList =
                 TouristSpotsDatabase(requireActivity().getApplicationContext()).spotsListDao()
                     .getAllSpotsList() ?: listOf()
             withContext(Main) {
-//
-//                if (getAPiList == null)
-//                    return@withContext
+
 
                 val originalList: List<Info> = getDBList
                 val displayList: MutableList<Info> = getDBList.toMutableList()
@@ -155,6 +157,7 @@ class TouristSpotsListFragment : Fragment() {
                                 displayList.clear()
                                 val search = newText
 
+                                //只要搜尋的字有被包含到就把他加到display List裡
                                 originalList.forEach {
                                     if (search in it.spotRegion ?: "" ||
                                         it.spotAddress?.contains(search) ?: false ||
@@ -183,6 +186,8 @@ class TouristSpotsListFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
+
+    // observe view model Live Data的方法，並set UI 介面
     private fun observeViewModel(view: View) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.touristSpotsListRecyclerView)
         val errorSign = view.findViewById<TextView>(R.id.listErrorSign)

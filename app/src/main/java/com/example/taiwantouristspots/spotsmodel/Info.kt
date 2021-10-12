@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-
+//主要介面個別景點的class，也是操作Retrofit抓取Api資料所需的class，也是此資料存在Room DB的Entity
 @Entity(tableName = "SpotsList")
 data class Info(
     @SerializedName("Add")

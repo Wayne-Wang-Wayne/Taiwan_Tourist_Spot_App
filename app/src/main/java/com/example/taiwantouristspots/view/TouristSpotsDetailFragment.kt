@@ -27,11 +27,13 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 
 
+//景點詳細資訊Fragment
 class TouristSpotsDetailFragment : Fragment() {
 
+    //此為下面會用到的viewModel及傳遞進此Fragment的資料
     private val viewModel: TouristSpotsAppViewModel by activityViewModels()
-
     val args: TouristSpotsDetailFragmentArgs by navArgs()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,12 +43,13 @@ class TouristSpotsDetailFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_tourist_spots_detail, container, false)
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //連接到天氣Fragment去的Button，並傳遞資料過去
         val weatherFloatingButton =
             view.findViewById<FloatingActionButton>(R.id.weatherFloatingButton)
-
         weatherFloatingButton.setOnClickListener {
             it.findNavController()
                 .navigate(TouristSpotsDetailFragmentDirections.actionDetailToWeatherFragment(args.spotRegion))
@@ -99,12 +102,11 @@ class TouristSpotsDetailFragment : Fragment() {
             args.spotPictureUrl
         )
 
-
+        //創建此Fragment時更新ViewModel資料
         viewModel.refreshDetailData(info)
-
         observeViewModel(view)
 
-        //launch g Map
+        //按鈕設置，點擊地址可以透過Intent launch Google Map
         val tVDetailAddress = view.findViewById<TextView>(R.id.tVDetailAddress)
 
         tVDetailAddress.setOnClickListener {
@@ -114,18 +116,16 @@ class TouristSpotsDetailFragment : Fragment() {
             startActivity(mapIntent)
 
         }
-        //make phone call
+        //按鈕設置，點擊可以 make phone call
         val tVDetailPhoneNumber = view.findViewById<TextView>(R.id.tVDetailPhoneNumber)
         tVDetailPhoneNumber.setOnClickListener {
             val number = Uri.parse("tel:${args.spotTel}")
             val callIntent = Intent(Intent.ACTION_CALL, number)
             startActivity(callIntent)
-
         }
-
-
     }
 
+    //observe View Model Live Data以及set UI介面的邏輯
     private fun observeViewModel(view: View) {
         val iVDetailSpotPic = view.findViewById<ImageView>(R.id.iVDetailSpotPic)
         val tVDetailSpotName = view.findViewById<TextView>(R.id.tVDetailSpotName)

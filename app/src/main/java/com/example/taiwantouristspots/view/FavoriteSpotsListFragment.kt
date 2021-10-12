@@ -19,9 +19,8 @@ import kotlinx.coroutines.launch
 
 class FavoriteSpotsListFragment : Fragment() {
 
-
+    //此為下面會用到的viewModel及adapter
     private val viewModel: TouristSpotsAppViewModel by activityViewModels()
-
     private val touristSpotsListAdapter = FavoriteSpotsListAdapter(arrayListOf())
 
 
@@ -36,21 +35,21 @@ class FavoriteSpotsListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //設定此RecyclerView
         val recyclerView = view.findViewById<RecyclerView>(R.id.favoriteSpotsListRecyclerView)
-
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = touristSpotsListAdapter
         }
 
-
+        //Fragment創建時呼叫更新Live Data的方法，以及observe Live Data
         CoroutineScope(IO).launch {
             viewModel.updateFavLiveData()
         }
-
         observeViewModel(view)
     }
 
+    //自寫的observe Live Data方法
     private fun observeViewModel(view: View) {
         viewModel.favoriteSpotsList.observe(viewLifecycleOwner, Observer {
             touristSpotsListAdapter.updateTouristSpotsList(it)

@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
 import kotlinx.coroutines.withContext
 
+//此class為使用sharedPreference儲存的工具，可依需求再新增function在這
 class SharedPreferencesHelper {
 
     companion object {

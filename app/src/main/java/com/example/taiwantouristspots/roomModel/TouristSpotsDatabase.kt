@@ -7,6 +7,8 @@ import androidx.room.RoomDatabase
 import com.example.taiwantouristspots.spotsmodel.Info
 import com.example.taiwantouristspots.spotsmodel.FavoriteInfo
 
+
+//此App的Room DB class
 @Database(entities = [Info::class, FavoriteInfo::class], version = 2)
 abstract class TouristSpotsDatabase : RoomDatabase() {
 
