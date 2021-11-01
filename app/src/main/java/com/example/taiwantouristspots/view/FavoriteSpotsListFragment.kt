@@ -36,6 +36,7 @@ class FavoriteSpotsListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //設定此RecyclerView
+
         val recyclerView = view.findViewById<RecyclerView>(R.id.favoriteSpotsListRecyclerView)
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context)

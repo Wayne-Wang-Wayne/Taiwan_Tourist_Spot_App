@@ -5,7 +5,7 @@ import android.view.*
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import android.widget.ProgressBar
-import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.SearchView
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.taiwantouristspots.R
+import com.example.taiwantouristspots.retrofitmodel.RetrofitInstance
 import com.example.taiwantouristspots.roomModel.TouristSpotsDatabase
 import com.example.taiwantouristspots.spotsmodel.Info
 import com.example.taiwantouristspots.viewmodel.TouristSpotsAppViewModel
@@ -35,6 +36,7 @@ class TouristSpotsListFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+
     }
 
     override fun onCreateView(

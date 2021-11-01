@@ -34,7 +34,7 @@ class TouristSpotsAppViewModel(application: Application) : AndroidViewModel(appl
         } else {
             fetchFromRemote()
         }
-
+        
     }
 
     suspend fun refreshBypassCache() {
